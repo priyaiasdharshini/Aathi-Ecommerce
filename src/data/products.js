@@ -5,7 +5,7 @@ export const products = [
     name: "Karungali Mala",
     description: "Authentic Karungali wood prayer beads",
     price: 39.99,
-    image: "/images/karungali-mala.jpg",
+    image: "\yogapose.jpg",
     category: "karungali"
   },
   {
@@ -25,8 +25,8 @@ export const products = [
     category: "gemstone"
   },
     {
-    id: 3,
-    name: "Ruby Gemstone",
+    id: 4,
+    name: "sandalwood",
     description: "Natural ruby stone for astrological benefits",
     price: 89.99,
     image: "/images/ruby-gemstone.jpg",

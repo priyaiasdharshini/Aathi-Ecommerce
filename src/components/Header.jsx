@@ -3,8 +3,9 @@ import { Search, X, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-const Header = () => {
+const Header = ({cartItems}) => {
   const [showOffer, setShowOffer] = useState(true);
+  const [cartCount, setCartCount] = useState(0)
   const [currentOffer, setCurrentOffer] = useState(0);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -15,6 +16,10 @@ const Header = () => {
     "✨ Buy 2 Get 1 Free on Gemstones",
     "🙏 Extra 15% Off for First-Time Buyers"
   ];
+
+  useEffect(()=>{
+    setCartCount(cartItems.length)
+  },[cartItems])
 
   // Handle window resize
   useEffect(() => {
@@ -218,7 +223,7 @@ const Header = () => {
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              0
+              {cartCount}
             </span>
           </Link>
         </div>

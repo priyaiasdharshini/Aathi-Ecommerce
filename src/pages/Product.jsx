@@ -4,9 +4,11 @@ import { products } from '../data/products';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const ProductPage = () => {
+const ProductPage = ({cartItems, setCartItems}) => {
   const { productId } = useParams();
   const product = products.find(p => p.id === parseInt(productId));
+
+  
 
   if (!product) {
     return (
@@ -20,9 +22,16 @@ const ProductPage = () => {
     );
   }
 
+  function handleCartItems(){
+    setCartItems(prev=>([
+      ...prev,
+      product
+    ]))
+  }
+
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="bg-amber-50 min-h-screen py-12">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto">
@@ -54,7 +63,9 @@ const ProductPage = () => {
                   </select>
                 </div>
                 
-                <button className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded transition duration-300 mb-4">
+                <button 
+                onClick={handleCartItems}
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded transition duration-300 mb-4">
                   Add to Cart
                 </button>
                 
@@ -72,7 +83,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
