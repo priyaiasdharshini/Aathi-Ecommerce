@@ -1,8 +1,12 @@
 // src/pages/Home.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import StoreFeatures from '../components/StoreFeatures';
+import Sacredofferbar from '../components/Sacredofferbar';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+
+
 
 const Home = () => {
   const categories = [
@@ -17,6 +21,36 @@ const Home = () => {
     { name: '12 RASI BANDS', slug: 'rasi-bands' },
     { name: 'SPL BRACELETS', slug: 'special-bracelets' }
   ];
+  const slides = [
+  {
+    image: "\sample.jpg",
+    title: "SACRED COLLECTION",
+    description: "Authentic spiritual items for divine living",
+    link: "/category/karungali",
+  },
+  {
+    image: "https://i.ibb.co/Y8wBQsh/spiritual2.jpg",
+    title: "RUDRAKSHA MALA",
+    description: "Pure, energized, and ready for spiritual practice",
+    link: "/category/rudraksha",
+  },
+  {
+    image: "https://i.ibb.co/q0wqctD/spiritual3.jpg",
+    title: "GEMSTONES & ENERGY",
+    description: "Harness the power of nature",
+    link: "/category/gemstone",
+  }
+];
+
+const [currentSlide, setCurrentSlide] = useState(0);
+
+useEffect(() => {
+  const id = setInterval(() => {
+    setCurrentSlide((s) => (s === slides.length - 1 ? 0 : s + 1));
+  }, 4000);
+  return () => clearInterval(id);
+}, []);
+
 
   return (
     <>
@@ -39,17 +73,56 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Hero Section */}
-        <div className="text-center py-20 px-4">
-          <h1 className="text-4xl font-bold text-amber-800 mb-4">SACRED COLLECTION</h1>
-          <p className="text-xl text-amber-700 mb-8">Authentic spiritual items for divine living</p>
-          <Link 
-            to="/category/rudraksha" 
-            className="inline-block bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
+       {/* Hero Section */}
+<section className="relative w-full h-[60vh] md:h-[75vh] lg:h-[90vh] overflow-hidden">
+  {slides.map((slide, idx) => (
+    <div
+      key={idx}
+      className={`absolute inset-0 transition-opacity duration-1000 ${
+        idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+      }`}
+    >
+      <img
+        src={slide.image}
+        alt={slide.title}
+        className="w-full h-full object-cover"
+      />
+
+      {/* Overlay and content */}
+      <div className="absolute inset-0 bg-black/30 flex items-center justify-end pr-6 sm:pr-8 md:pr-12 lg:pr-20">
+        <div className="text-right text-white max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+            {slide.title}
+          </h2>
+          <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl opacity-90">
+            {slide.description}
+          </p>
+          <Link
+            to={slide.link}
+            className="inline-block mt-5 bg-amber-600 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition"
           >
             SHOP NOW ►
           </Link>
         </div>
+      </div>
+    </div>
+  ))}
+
+  {/* Dots */}
+  <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+    {slides.map((_, i) => (
+      <button
+        key={i}
+        onClick={() => setCurrentSlide(i)}
+        className={`w-3 h-3 rounded-full ${currentSlide === i ? "bg-amber-400" : "bg-white/60"}`}
+        aria-label={`Go to slide ${i + 1}`}
+      />
+    ))}
+  </div>
+l̥</section>
+l̥<StoreFeatures />
+<Sacredofferbar />
+
       </div>
       {/* <Footer /> */}
     </>
