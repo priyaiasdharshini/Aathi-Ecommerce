@@ -130,7 +130,7 @@ const SpiritualStore = () => {
                   backgroundColor: 'rgba(245, 158, 11, 0.1)'
                 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 ${colors.white.pure} shadow-md text-sm font-medium text-amber-700 border border-amber-200 cursor-pointer hover:border-amber-300 transition-all`}
+                className={`px-4 py-2 ${colors.white.pure} shadow-md text-sm font-medium text-amber-700 border border-amber-100 cursor-pointer hover:border-amber-50 transition-all`}
               >
                 {category}
               </motion.div>
