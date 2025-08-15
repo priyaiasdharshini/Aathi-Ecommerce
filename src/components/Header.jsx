@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-amber-800 text-white shadow-lg sticky top-0 z-40">
+      <header className="bg-amber-300 text-amber-900 shadow-lg sticky top-0 z-40">
         <div className="container mx-auto px-4">
           {/* Top Bar */}
           <div className="flex justify-between items-center py-4">
